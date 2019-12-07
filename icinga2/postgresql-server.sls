@@ -1,4 +1,6 @@
-{% if salt['pillar.get']('icinga2:postgres:use_formula', False) %}
+{% from "icinga2/map.jinja" import icinga2 with context %}
+
+{% if icinga2.get('postgres:use_formula', False) %}
 include:
   - postgres.server
 {% else %}
