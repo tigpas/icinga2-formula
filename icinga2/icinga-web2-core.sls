@@ -39,3 +39,29 @@ icinga2web-autoconfigure-finalize:
     - group: {{ icinga2.icinga_web2.group }}
     - require:
       - group: icingaweb2-group
+
+{% if icinga2.features.get("api", False) %}
+is-icinga2web-api-password-set:
+  test.check_pillar:
+    - present:
+      - 'icinga2:lookup:icinga_web2:api:password'
+    - string:
+      - 'icinga2:lookup:icinga_web2:api:password'
+
+icinga2web_api_user:
+  file.blockreplace:
+    - name: /etc/icinga2/conf.d/api-users.conf
+    - marker_start: "#-- start api user for icingaweb2 --#"
+    - marker_end: "#-- end api user for icingaweb2 --#"
+    - append_if_not_found: True
+    - content: |
+        object ApiUser "{{ icinga2.icinga_web2.api.user }}" {
+          password = "{{ icinga2.icinga_web2.api.password }}"
+          permissions = [ "*" ]
+        }
+    - require:
+      - test: is-icinga2web-api-password-set
+      - cmd: iciniga2_feature_api_initial
+    - require_in:
+      - service: icinga2_service_restart
+{%- endif %}

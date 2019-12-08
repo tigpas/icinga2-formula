@@ -12,6 +12,9 @@ icinga2:
       db:
         # MUST BE SET when using icinga2.icinga-web2-database
         password: AnotherSecurePassword
+      api:
+        # MUST BE SET when using API instet of command features
+        password: TheMonitoringPassword
       pkgs:
         - ...
       required_pkgs:
