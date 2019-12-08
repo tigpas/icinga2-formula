@@ -54,20 +54,21 @@ icinga2:
       - php-gd
       - php-imagick
       - git
-    features:
-      api: False
-      command: True
-      debuglog: False
-      gelf: False
-      graphite: False
-      influxdb: False
-      livestatus: False
-      opentsdb: False
-      perfdata: False
-      statusdata: False
-      syslog: False
     modules_repo: https://github.com/Icinga/icingaweb2-module- # ${modulename}.git is appended
     modules:
+
+  features:
+    api: False
+    command: True
+    debuglog: False
+    gelf: False
+    graphite: False
+    influxdb: False
+    livestatus: False
+    opentsdb: False
+    perfdata: False
+    statusdata: False
+    syslog: False
 
   check_command:
     openvpn:

@@ -14,10 +14,6 @@ icinga2-web2:
     - require:
       - pkg: icinga2-web2-required-packages
 
-{%- for name, enable in icinga2.icinga_web2.features.items() %}
-{{ feature(name, enable) }}
-{%  endfor %}
-
 icingaweb2-group:
   group.present:
     - name: {{ icinga2.icinga_web2.group }}
