@@ -40,6 +40,12 @@ icinga2:
       # None => lets the state fail which is desired!
       password:
     schema_path: /usr/share/icingaweb2/etc/schema/pgsql.schema.sql
+    api:
+      user: icinga2web_monitoring
+      # None => lets the state fail which is desired!
+      password:
+      host: 127.0.0.1
+      port: 5665
     pkgs:
       - icingaweb2
       - icingaweb2-module-doc

@@ -5,4 +5,14 @@
 {%- for name, enable in icinga2.features.items() %}
 {{ feature(name, enable) }}
 {%  endfor %}
+
+{% if icinga2.features.get("api", False) %}
+iciniga2_feature_api_initial:
+  cmd.run:
+    - name: icinga2 api setup
+    - require:
+      - cmd: icinga2_feature_api
+    - onchanges:
+      - cmd: icinga2_feature_api
+{%- endif %}
 {%- endif %}

@@ -16,25 +16,29 @@ icinga2:
       db:
         # MUST BE SET when using icinga2.icinga-web2-database
         password: AnotherSecurePassword
+      api:
+        # MUST BE SET when using API instet of command features
+        password: TheMonitoringPassword
       pkgs:
         - ...
       required_pkgs:
         - ...
-      features:
-        api: False  # disable
-        command: True  # enable
-        gelf: True
-        graphite: True
-        opentsdb: True
-        perfdata: True
-        statusdata: True
-        # ...
       modules:
         incubator:
           version: v0.5.0 # tag or branch
           enable: true # optional
           repo: https://github.com/Icinga/icingaweb2-module-incubator.git # optional
           path: /usr/share/icingaweb2/modules/incubator # optional
+
+    features:
+       api: False  # disable
+       command: True  # enable
+       gelf: True
+       graphite: True
+       opentsdb: True
+       perfdata: True
+       statusdata: True
+       # ...
 
     notification:
       xmpp:
